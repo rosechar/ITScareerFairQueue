@@ -1,0 +1,12 @@
+<section class="ui center main">
+    <h1>Events</h1>
+
+    <div class="ui list">
+        <% @events.order(:name).each do |event| %>
+            <div class="ui item"><%= link_to event.name, event_path(event) %></div>
+        <% end %>
+        <% if current_user.recruiter %>
+            <div class="ui item"><%= link_to '+ Add New Event', new_event_path %></div>
+        <% end %>
+    </div>
+</section>

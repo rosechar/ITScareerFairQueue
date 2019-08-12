@@ -1,0 +1,2652 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateEvents (20190710190903)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "location" varchar, "link" varchar, "description" text, "slug" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190710190903_create_events.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190710190903"]]
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateCompanies (20190712204113)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "companies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "link" varchar, "summary" text, "iSponsor" boolean, "slug" varchar, "event_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_b64f18cd7d"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+)[0m
+  ↳ db/migrate/20190712204113_create_companies.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_companies_on_event_id" ON "companies" ("event_id")[0m
+  ↳ db/migrate/20190712204113_create_companies.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190712204113"]]
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateUsers (20190725135713)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190725135713_create_users.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  ↳ db/migrate/20190725135713_create_users.rb:11
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190725135713"]]
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-26 19:11:21.994904"], ["updated_at", "2019-07-26 19:11:21.994904"]]
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Started GET "/" for ::1 at 2019-07-26 15:11:31 -0400
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/charlierose/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 1123ms (Views: 1099.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:11:35 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (40.9ms)
+Completed 200 OK in 66ms (Views: 60.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/" for ::1 at 2019-07-26 15:12:12 -0400
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ELMPgRFX780KV3MIeBf3VQou6ax1TsYHSt40AY70tGvokAs/pKe46w7zfRRhp7PsgtASsko5dCEenKE0y9vBPg==", "event"=>{"name"=>"School of Information", "location"=>"North Quad", "date"=>"2019-04-02", "link"=>"", "description"=>"", "slug"=>"si"}, "commit"=>"Save Event"}
+Unpermitted parameter: :date
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+  [1m[36mEvent Create (0.6ms)[0m  [1m[32mINSERT INTO "events" ("name", "location", "link", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "School of Information"], ["location", "North Quad"], ["link", ""], ["description", ""], ["slug", "si"], ["created_at", "2019-07-26 19:12:12.176152"], ["updated_at", "2019-07-26 19:12:12.176152"]]
+  ↳ app/controllers/events_controller.rb:18
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+Redirected to http://localhost:3000/si
+Completed 302 Found in 18ms (ActiveRecord: 2.3ms)
+
+
+Started GET "/si" for ::1 at 2019-07-26 15:12:12 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"si"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 1]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (32.2ms)
+Completed 200 OK in 60ms (Views: 53.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:12:16 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 53ms (Views: 49.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:12:17 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 55ms (Views: 53.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/" for ::1 at 2019-07-26 15:12:40 -0400
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QdKGCZep8SvlOv22gEiwDOhoKcorQ1mHaJLLgNP17Kq58YK3IlmmDeGe86qZ+PS1YJbS1BQ066E80F61ltqZ/w==", "event"=>{"name"=>"College of Engineering", "location"=>"Pierpont ", "date"=>"2019-08-03", "link"=>"", "description"=>"", "slug"=>""}, "commit"=>"Save Event"}
+Unpermitted parameter: :date
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+Redirected to http://localhost:3000/
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:12:40 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 385ms (Views: 383.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:12:45 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 52ms (Views: 48.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:12:50 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 58ms (Views: 56.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/" for ::1 at 2019-07-26 15:12:53 -0400
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lIBu/wO+qil6P2Z/v+8WcfIfQgfXaYzt8ney3bEMqxNso2pBtk79D36baGOmX1LIeuG5GegePsumNSfo9CPeRg==", "event"=>{"name"=>"College of Engineering", "location"=>"", "date"=>"", "link"=>"", "description"=>"", "slug"=>""}, "commit"=>"Save Event"}
+Unpermitted parameter: :date
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+Redirected to http://localhost:3000/
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:12:53 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 442ms (Views: 439.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/si" for ::1 at 2019-07-26 15:12:57 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"si"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 1]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 58ms (Views: 52.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:13:07 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 62ms (Views: 60.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/" for ::1 at 2019-07-26 15:13:26 -0400
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tD/vMCIRRYMz5vpmi1ht1ZCR6Nh26AGpd8fuG06K4/JMHOuOl+ESpTdC9HqS6ClsGG8Txkmfs48jhXsuC6WWpw==", "event"=>{"name"=>"College of Engineering", "location"=>"Pierpont ", "date"=>"2019-01-01", "link"=>"", "description"=>"", "slug"=>"eng"}, "commit"=>"Save Event"}
+Unpermitted parameter: :date
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+  [1m[36mEvent Create (0.6ms)[0m  [1m[32mINSERT INTO "events" ("name", "location", "link", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "College of Engineering"], ["location", "Pierpont "], ["link", ""], ["description", ""], ["slug", "eng"], ["created_at", "2019-07-26 19:13:26.108845"], ["updated_at", "2019-07-26 19:13:26.108845"]]
+  ↳ app/controllers/events_controller.rb:18
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+Redirected to http://localhost:3000/eng
+Completed 302 Found in 64ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/eng" for ::1 at 2019-07-26 15:13:26 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"eng"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 2]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 43ms (Views: 39.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:13:28 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 51ms (Views: 49.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/si" for ::1 at 2019-07-26 15:13:34 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"si"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 1]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 96ms (Views: 90.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/eng" for ::1 at 2019-07-26 15:13:37 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"eng"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (1.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 2]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 50ms (Views: 42.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:13:43 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 44ms (Views: 41.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/" for ::1 at 2019-07-26 15:15:44 -0400
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dgiuFbVHNzFZYORdnI1Oag3sy60sqF2JfSnNdgAuxReOK6qrALdgF13E6kGFPQrThRIwsxPf768pa1hDRQGwQg==", "event"=>{"name"=>"College of Literature, Science, and the Arts", "location"=>"", "date"=>"", "link"=>"", "description"=>"", "slug"=>"lsa"}, "commit"=>"Save Event"}
+Unpermitted parameter: :date
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+  [1m[36mEvent Create (0.6ms)[0m  [1m[32mINSERT INTO "events" ("name", "location", "link", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "College of Literature, Science, and the Arts"], ["location", ""], ["link", ""], ["description", ""], ["slug", "lsa"], ["created_at", "2019-07-26 19:15:44.901986"], ["updated_at", "2019-07-26 19:15:44.901986"]]
+  ↳ app/controllers/events_controller.rb:18
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+Redirected to http://localhost:3000/lsa
+Completed 302 Found in 324ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/lsa" for ::1 at 2019-07-26 15:15:45 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"lsa"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "lsa"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "lsa"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 3]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 34ms (Views: 31.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:15:46 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 46ms (Views: 44.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/si" for ::1 at 2019-07-26 15:15:50 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"si"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 1]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 46ms (Views: 42.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:15:52 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 66ms (Views: 63.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:15:54 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 51ms (Views: 48.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:17:36 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 45ms (Views: 44.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/" for ::1 at 2019-07-26 15:17:46 -0400
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MDnKs/Vyt6/bnPaI30D2CIPuk98q2leMtM8DcFSR8w/IGs4NQILgid84+JTG8LKxCxBowRWt5argjZZFEb6GWg==", "event"=>{"name"=>"University of Michigan Career Center", "location"=>"", "date"=>"", "link"=>"", "description"=>"", "slug"=>"umich"}, "commit"=>"Save Event"}
+Unpermitted parameter: :date
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+  [1m[36mEvent Create (0.6ms)[0m  [1m[32mINSERT INTO "events" ("name", "location", "link", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "University of Michigan Career Center"], ["location", ""], ["link", ""], ["description", ""], ["slug", "umich"], ["created_at", "2019-07-26 19:17:46.888364"], ["updated_at", "2019-07-26 19:17:46.888364"]]
+  ↳ app/controllers/events_controller.rb:18
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+Redirected to http://localhost:3000/umich
+Completed 302 Found in 356ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/umich" for ::1 at 2019-07-26 15:17:47 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"umich"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "umich"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "umich"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 4]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 81ms (Views: 78.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:17:49 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 45ms (Views: 42.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/login" for ::1 at 2019-07-26 15:17:52 -0400
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 36ms (Views: 33.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for ::1 at 2019-07-26 15:17:55 -0400
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (7.5ms)
+  Rendered users/new.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 56ms (Views: 35.3ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/users" for ::1 at 2019-07-26 15:18:04 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5zldOVfEKapv3TNJ/8BqG5aim+ys83H+hKAeZsH8cyPpOLjghY79U/77ySU7Vf/+nLGChrtb70rz4QChvnpQ7Q==", "user"=>{"first_name"=>"Charles", "last_name"=>"Rose", "email"=>"crose2016@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create User"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:30
+  [1m[36mUser Exists (1.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "crose2016@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:30
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Charles"], ["last_name", "Rose"], ["email", "crose2016@gmail.com"], ["password_digest", "$2a$12$.Zer4LKL6.ZHB7gEbMjJLuQdS/EoDAGU6uK5l4aY/5vjh5ieYiXgi"], ["created_at", "2019-07-26 19:18:04.631385"], ["updated_at", "2019-07-26 19:18:04.631385"]]
+  ↳ app/controllers/users_controller.rb:30
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:30
+Redirected to http://localhost:3000/events/index
+Completed 302 Found in 341ms (ActiveRecord: 4.1ms)
+
+
+Started GET "/events/index" for ::1 at 2019-07-26 15:18:04 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 34ms (Views: 31.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/login" for ::1 at 2019-07-26 15:18:07 -0400
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 43ms (Views: 41.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions" for ::1 at 2019-07-26 15:18:12 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WdfvU8dLeIGlm/Kh3McD/N1tLNM0Qe4WZJ33rTiYt//NmfEvVgsjJ47m48qlHMldSz0jUTUnIb5wIx5ynOQcxQ==", "email"=>"crose2016@gmail.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "crose2016@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6
+Redirected to http://localhost:3000/
+Completed 302 Found in 263ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:18:12 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 21ms (Views: 19.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:19:03 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 42ms (Views: 40.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/" for ::1 at 2019-07-26 15:19:53 -0400
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Qpiwq/FflIGtaDN7OUSCMqWZEvRrRcUYKCpN+cBc/6i6u7QVRK/Dp6nMPWcg9MaLLWfp6lQydz58aNjMhXOK/Q==", "event"=>{"name"=>"School of Information", "location"=>"North Quad", "date"=>"2019-03-03", "link"=>"https://www.si.umich.edu/careers/annual-fair-and-student-project-exhibition-0", "description"=>"The UMSI Career Fair is a great way to connect with talented School of Information undergraduate and graduate student population. Attend the UMSI Career Fair to:\r\n\r\n-Enhance your campus presence\r\n-Highlight your organization by handing out literature and collect resumes\r\n-Meet and engage with hundreds of enthusiastic students looking for internships and full-time jobs\r\n-Become inspired and find your next top talent by hearing students share their passion \"pitch\" ", "slug"=>"si"}, "commit"=>"Save Event"}
+Unpermitted parameter: :date
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+  [1m[36mEvent Create (0.6ms)[0m  [1m[32mINSERT INTO "events" ("name", "location", "link", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "School of Information"], ["location", "North Quad"], ["link", "https://www.si.umich.edu/careers/annual-fair-and-student-project-exhibition-0"], ["description", "The UMSI Career Fair is a great way to connect with talented School of Information undergraduate and graduate student population. Attend the UMSI Career Fair to:\r\n\r\n-Enhance your campus presence\r\n-Highlight your organization by handing out literature and collect resumes\r\n-Meet and engage with hundreds of enthusiastic students looking for internships and full-time jobs\r\n-Become inspired and find your next top talent by hearing students share their passion \"pitch\" "], ["slug", "si"], ["created_at", "2019-07-26 19:19:53.263090"], ["updated_at", "2019-07-26 19:19:53.263090"]]
+  ↳ app/controllers/events_controller.rb:18
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+Redirected to http://localhost:3000/si
+Completed 302 Found in 6ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/si" for ::1 at 2019-07-26 15:19:53 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"si"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 1]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 38ms (Views: 34.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:19:55 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 68ms (Views: 66.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/si" for ::1 at 2019-07-26 15:19:56 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"si"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 1]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 68ms (Views: 63.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/si" for ::1 at 2019-07-26 15:20:01 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"si"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 1]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 65ms (Views: 62.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/si" for ::1 at 2019-07-26 15:20:03 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"si"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "si"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 1]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 53ms (Views: 50.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:20:07 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 57ms (Views: 56.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/" for ::1 at 2019-07-26 15:20:34 -0400
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QBmqLlhrKTXLJWOR8biDVudgjO70PDqkXfcRj2Mmwiy4Oq6Q7Zt+E8+BbY3oCMfvb5538MtLiIIJtYS6Jgm3eQ==", "event"=>{"name"=>"SI Winter Career Fair", "location"=>"North Quad", "date"=>"2019-04-02", "link"=>"https://www.si.umich.edu/careers/annual-fair-and-student-project-exhibition-0", "description"=>"The UMSI Career Fair is a great way to connect with talented School of Information undergraduate and graduate student population. Attend the UMSI Career Fair to:\r\n\r\n-Enhance your campus presence\r\n-Highlight your organization by handing out literature and collect resumes\r\n-Meet and engage with hundreds of enthusiastic students looking for internships and full-time jobs\r\n-Become inspired and find your next top talent by hearing students share their passion \"pitch\" ", "slug"=>"siwinter"}, "commit"=>"Save Event"}
+Unpermitted parameter: :date
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+  [1m[36mEvent Create (0.7ms)[0m  [1m[32mINSERT INTO "events" ("name", "location", "link", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "SI Winter Career Fair"], ["location", "North Quad"], ["link", "https://www.si.umich.edu/careers/annual-fair-and-student-project-exhibition-0"], ["description", "The UMSI Career Fair is a great way to connect with talented School of Information undergraduate and graduate student population. Attend the UMSI Career Fair to:\r\n\r\n-Enhance your campus presence\r\n-Highlight your organization by handing out literature and collect resumes\r\n-Meet and engage with hundreds of enthusiastic students looking for internships and full-time jobs\r\n-Become inspired and find your next top talent by hearing students share their passion \"pitch\" "], ["slug", "siwinter"], ["created_at", "2019-07-26 19:20:34.313483"], ["updated_at", "2019-07-26 19:20:34.313483"]]
+  ↳ app/controllers/events_controller.rb:18
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+Redirected to http://localhost:3000/siwinter
+Completed 302 Found in 7ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/siwinter" for ::1 at 2019-07-26 15:20:34 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwinter"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwinter"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwinter"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 6]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 30ms (Views: 27.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:20:40 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 45ms (Views: 43.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/new" for ::1 at 2019-07-26 15:20:43 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 72ms (Views: 70.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/" for ::1 at 2019-07-26 15:21:42 -0400
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MYmxMhYm5g/I2E4KooYqdMMG5p3XTbik8MncsUOgCI/JqrWMo9axKcx8QBa7Nm7NS/gdg+g6CoKki0mEBo992g==", "event"=>{"name"=>"School of Information Winter Career Fair", "location"=>"North Quad", "date"=>"2019-02-03", "link"=>"https://www.si.umich.edu/careers/annual-fair-and-student-project-exhibition-0", "description"=>"The UMSI Career Fair is a great way to connect with talented School of Information undergraduate and graduate student population.", "slug"=>"siwintercareerfair"}, "commit"=>"Save Event"}
+Unpermitted parameter: :date
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+  [1m[36mEvent Create (0.6ms)[0m  [1m[32mINSERT INTO "events" ("name", "location", "link", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "School of Information Winter Career Fair"], ["location", "North Quad"], ["link", "https://www.si.umich.edu/careers/annual-fair-and-student-project-exhibition-0"], ["description", "The UMSI Career Fair is a great way to connect with talented School of Information undergraduate and graduate student population."], ["slug", "siwintercareerfair"], ["created_at", "2019-07-26 19:21:42.363423"], ["updated_at", "2019-07-26 19:21:42.363423"]]
+  ↳ app/controllers/events_controller.rb:18
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/events_controller.rb:18
+Redirected to http://localhost:3000/siwintercareerfair
+Completed 302 Found in 6ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-26 15:21:42 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 36ms (Views: 33.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2019-07-26 15:21:48 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/views/events/index.html.erb:15
+  Rendered events/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 36ms (Views: 33.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-26 15:22:13 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 43ms (Views: 38.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/siwintercareerfair/new" for ::1 at 2019-07-26 15:22:14 -0400
+Processing by CompaniesController#new as HTML
+  Parameters: {"event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  Rendering companies/new.html.erb within layouts/application
+  Rendered companies/new.html.erb within layouts/application (26.8ms)
+Completed 200 OK in 62ms (Views: 57.4ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/siwintercareerfair" for ::1 at 2019-07-26 15:22:38 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sKs2/ircYAq02ZunHrdnUONymr0c0CmsViRvFtDICDgAFO7xe6WgPaI4DsH+AxY9SkZ3jjozPd6RBwpPmhSfOw==", "company"=>{"name"=>"Ford", "link"=>"ford.com", "summary"=>"Ford Motor Company is an American multinational automaker that has its main headquarters in Dearborn, Michigan", "iSponsor"=>"Yes", "slug"=>"ford"}, "commit"=>"Create Company", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[36mCompany Create (1.9ms)[0m  [1m[32mINSERT INTO "companies" ("name", "link", "summary", "iSponsor", "slug", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Ford"], ["link", "ford.com"], ["summary", "Ford Motor Company is an American multinational automaker that has its main headquarters in Dearborn, Michigan"], ["iSponsor", 1], ["slug", "ford"], ["event_id", 7], ["created_at", "2019-07-26 19:22:38.548443"], ["updated_at", "2019-07-26 19:22:38.548443"]]
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+Redirected to http://localhost:3000/siwintercareerfair
+Completed 302 Found in 18ms (ActiveRecord: 3.5ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-26 15:22:38 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 25ms (Views: 23.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/siwintercareerfair/new" for ::1 at 2019-07-26 15:22:40 -0400
+Processing by CompaniesController#new as HTML
+  Parameters: {"event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  Rendering companies/new.html.erb within layouts/application
+  Rendered companies/new.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 57ms (Views: 53.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/siwintercareerfair" for ::1 at 2019-07-26 15:22:44 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"28mqYT2fBZIJ418VeqDhFvq12wxsmHU1MZi/Nm0KdU9rdnJubObFpR8CynOaFJB7U4E2P0p7YUf2u9pvJ9biTA==", "company"=>{"name"=>"Chrysler", "link"=>"", "summary"=>"", "iSponsor"=>"", "slug"=>""}, "commit"=>"Create Company", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+  Rendering companies/new.html.erb within layouts/application
+  Rendered companies/new.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 85ms (Views: 76.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-26 15:22:51 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 46ms (Views: 41.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/siwintercareerfair/new" for ::1 at 2019-07-26 15:22:52 -0400
+Processing by CompaniesController#new as HTML
+  Parameters: {"event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  Rendering companies/new.html.erb within layouts/application
+  Rendered companies/new.html.erb within layouts/application (25.6ms)
+Completed 200 OK in 70ms (Views: 66.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/siwintercareerfair" for ::1 at 2019-07-26 15:22:57 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9lceVGFxu97H0mxjPh6+Zn1Fs/h8vzzazpcTaoMdXmFG6MZbMAh76dEz+QXeqs8L1HFey1pcKKgJtHYzycHJYg==", "company"=>{"name"=>"Amazon", "link"=>"", "summary"=>"", "iSponsor"=>"", "slug"=>"amazon"}, "commit"=>"Create Company", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[36mCompany Create (0.8ms)[0m  [1m[32mINSERT INTO "companies" ("name", "link", "summary", "slug", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Amazon"], ["link", ""], ["summary", ""], ["slug", "amazon"], ["event_id", 7], ["created_at", "2019-07-26 19:22:57.365961"], ["updated_at", "2019-07-26 19:22:57.365961"]]
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+Redirected to http://localhost:3000/siwintercareerfair
+Completed 302 Found in 11ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-26 15:22:57 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 28ms (Views: 25.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/siwintercareerfair/new" for ::1 at 2019-07-26 15:22:59 -0400
+Processing by CompaniesController#new as HTML
+  Parameters: {"event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  Rendering companies/new.html.erb within layouts/application
+  Rendered companies/new.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 44ms (Views: 40.5ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/siwintercareerfair" for ::1 at 2019-07-26 15:23:06 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KIaNzTg9DmvBISM5TqMboQVyy+jLP432DvvGnZq5yOKYOVXCaUTOXNfAtl+uF2rMrEYm2+3cmYTJ2KPE0GVf4Q==", "company"=>{"name"=>"Chrysler", "link"=>"", "summary"=>"", "iSponsor"=>"", "slug"=>"chrysler"}, "commit"=>"Create Company", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[36mCompany Create (1.4ms)[0m  [1m[32mINSERT INTO "companies" ("name", "link", "summary", "slug", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Chrysler"], ["link", ""], ["summary", ""], ["slug", "chrysler"], ["event_id", 7], ["created_at", "2019-07-26 19:23:06.438000"], ["updated_at", "2019-07-26 19:23:06.438000"]]
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+Redirected to http://localhost:3000/siwintercareerfair
+Completed 302 Found in 86ms (ActiveRecord: 4.2ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-26 15:23:06 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 38ms (Views: 35.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/siwintercareerfair/new" for ::1 at 2019-07-26 15:23:07 -0400
+Processing by CompaniesController#new as HTML
+  Parameters: {"event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  Rendering companies/new.html.erb within layouts/application
+  Rendered companies/new.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 40ms (Views: 35.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/siwintercareerfair" for ::1 at 2019-07-26 15:23:14 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GN/BjJ8WLQRelqvo3MhmhhawGlmdVS1lUXX+mvdrIvyoYBmDzm/tM0h3Po48fBfrv4T3aru2OReWVpvDvbe1/w==", "company"=>{"name"=>"Microsoft", "link"=>"", "summary"=>"", "iSponsor"=>"", "slug"=>"microsoft"}, "commit"=>"Create Company", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[36mCompany Create (0.7ms)[0m  [1m[32mINSERT INTO "companies" ("name", "link", "summary", "slug", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Microsoft"], ["link", ""], ["summary", ""], ["slug", "microsoft"], ["event_id", 7], ["created_at", "2019-07-26 19:23:14.587853"], ["updated_at", "2019-07-26 19:23:14.587853"]]
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+Redirected to http://localhost:3000/siwintercareerfair
+Completed 302 Found in 34ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-26 15:23:14 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 46ms (Views: 42.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/siwintercareerfair/new" for ::1 at 2019-07-26 15:23:15 -0400
+Processing by CompaniesController#new as HTML
+  Parameters: {"event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  Rendering companies/new.html.erb within layouts/application
+  Rendered companies/new.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 46ms (Views: 42.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/siwintercareerfair" for ::1 at 2019-07-26 15:23:21 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xq1UcNzFNRBi0P49te5iDDVwODUF/PdjwgW1QjBLRFl2Eox/jbz1J3Qxa1tVWhNhnETVBiMf4xEFJtAbepfTWg==", "company"=>{"name"=>"Apple", "link"=>"", "summary"=>"", "iSponsor"=>"", "slug"=>"apple"}, "commit"=>"Create Company", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[36mCompany Create (0.5ms)[0m  [1m[32mINSERT INTO "companies" ("name", "link", "summary", "slug", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Apple"], ["link", ""], ["summary", ""], ["slug", "apple"], ["event_id", 7], ["created_at", "2019-07-26 19:23:21.007437"], ["updated_at", "2019-07-26 19:23:21.007437"]]
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+Redirected to http://localhost:3000/siwintercareerfair
+Completed 302 Found in 12ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-26 15:23:21 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 30ms (Views: 26.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/siwintercareerfair/new" for ::1 at 2019-07-26 15:23:22 -0400
+Processing by CompaniesController#new as HTML
+  Parameters: {"event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  Rendering companies/new.html.erb within layouts/application
+  Rendered companies/new.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 58ms (Views: 53.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/siwintercareerfair" for ::1 at 2019-07-26 15:23:26 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+7T/TA5gUNzGqrTJ+I8DtqjTwsoerjIRsuKIN+ALJkRLCydDXxmQ69BLIa8YO3LbAecv+ThNJmN1we1uqtexRw==", "company"=>{"name"=>"ITS", "link"=>"", "summary"=>"", "iSponsor"=>"", "slug"=>"its"}, "commit"=>"Create Company", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[36mCompany Create (0.6ms)[0m  [1m[32mINSERT INTO "companies" ("name", "link", "summary", "slug", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "ITS"], ["link", ""], ["summary", ""], ["slug", "its"], ["event_id", 7], ["created_at", "2019-07-26 19:23:26.892731"], ["updated_at", "2019-07-26 19:23:26.892731"]]
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/companies_controller.rb:21
+Redirected to http://localhost:3000/siwintercareerfair
+Completed 302 Found in 27ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-26 15:23:26 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ?[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:16
+  Rendered events/show.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 67ms (Views: 64.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2019-07-27 21:56:26 -0400
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/charlierose/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."name" ASC[0m
+  ↳ app/views/events/index.html.erb:16
+  Rendered events/index.html.erb within layouts/application (47.1ms)
+Completed 200 OK in 713ms (Views: 690.4ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-27 21:56:38 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.9ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (37.6ms)
+Completed 200 OK in 70ms (Views: 63.9ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-27 21:56:46 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.4ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 39ms (Views: 30.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2019-07-30 11:41:23 -0400
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/charlierose/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."name" ASC[0m
+  ↳ app/views/events/index.html.erb:16
+  Rendered events/index.html.erb within layouts/application (29.9ms)
+Completed 200 OK in 321ms (Views: 307.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/eng" for ::1 at 2019-07-30 11:41:26 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"eng"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.6ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 2]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (29.5ms)
+Completed 200 OK in 66ms (Views: 59.4ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for ::1 at 2019-07-30 11:41:29 -0400
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."name" ASC[0m
+  ↳ app/views/events/index.html.erb:16
+  Rendered events/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 54ms (Views: 51.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-30 11:41:30 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (1.8ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (51.7ms)
+Completed 200 OK in 79ms (Views: 71.3ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-30 11:41:31 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.5ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 71ms (Views: 64.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/new" for ::1 at 2019-07-30 11:41:58 -0400
+Processing by EventsController#new as HTML
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/new.html.erb within layouts/application (42.9ms)
+Completed 200 OK in 96ms (Views: 92.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/eng" for ::1 at 2019-07-30 11:42:02 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"eng"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 2]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 68ms (Views: 63.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-30 11:42:06 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 53ms (Views: 47.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-30 11:42:07 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 51ms (Views: 44.1ms | ActiveRecord: 0.6ms)
+
+
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to CreateRequests (20190731182730)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190731182730_create_requests.rb:3
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "requests" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "company_id" integer, "event_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_8ead8b1e6b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_7ded19f51a"
+FOREIGN KEY ("company_id")
+  REFERENCES "companies" ("id")
+, CONSTRAINT "fk_rails_f036507ff7"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+)[0m
+  ↳ db/migrate/20190731182730_create_requests.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_requests_on_user_id" ON "requests" ("user_id")[0m
+  ↳ db/migrate/20190731182730_create_requests.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_requests_on_company_id" ON "requests" ("company_id")[0m
+  ↳ db/migrate/20190731182730_create_requests.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_requests_on_event_id" ON "requests" ("event_id")[0m
+  ↳ db/migrate/20190731182730_create_requests.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190731182730"]]
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/charlierose/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Started GET "/" for ::1 at 2019-07-31 15:00:33 -0400
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/charlierose/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."name" ASC[0m
+  ↳ app/views/events/index.html.erb:16
+  Rendered events/index.html.erb within layouts/application (30.6ms)
+Completed 200 OK in 551ms (Views: 528.1ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/eng" for ::1 at 2019-07-31 15:00:37 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"eng"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "eng"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.5ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 2]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (33.0ms)
+Completed 200 OK in 64ms (Views: 58.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/umich" for ::1 at 2019-07-31 15:00:52 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"umich"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "umich"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "umich"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 4]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 51ms (Views: 46.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/siwintercareerfair" for ::1 at 2019-07-31 15:00:57 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.5ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (28.0ms)
+Completed 200 OK in 71ms (Views: 66.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:00:59 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (1.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (8.6ms)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 1.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `title' for nil:NilClass):
+    16: 
+    17: <p>
+    18:   <strong>Title:</strong>
+    19:   <%= @article.title %>
+    20: </p>
+    21: 
+    22: <p>
+  
+app/views/companies/show.html.erb:19:in `_app_views_companies_show_html_erb___2181409301437932968_70276030828340'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:01:40 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (167.8ms)
+Completed 500 Internal Server Error in 175ms (ActiveRecord: 1.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `company_requests_path' for #<#<Class:0x00007fd4d3b43070>:0x00007fd4d1e36b58>
+Did you mean?  compute_asset_path):
+    14:     <p>
+    15: 
+    16: <h2>Join the queue</h2>
+    17: <%= form_with(model: [ @company, @company.requests.build ], local: true) do |form| %>
+    18:   <p>
+    19:     <%= form.submit %>
+    20:   </p>
+  
+app/views/companies/show.html.erb:17:in `_app_views_companies_show_html_erb___2181409301437932968_70276015569380'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:04:30 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (155.5ms)
+Completed 500 Internal Server Error in 185ms (ActiveRecord: 2.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `company_requests_path' for #<#<Class:0x00007fd4d0af2a38>:0x00007fd4d0af1070>
+Did you mean?  compute_asset_path):
+    14:     <p>
+    15: 
+    16: <h2>Join the queue</h2>
+    17: <%= form_with(model: [ @company, @company.requests.build ], local: true) do |form| %>
+    18:   <p>
+    19:     <%= form.submit %>
+    20:   </p>
+  
+app/views/companies/show.html.erb:17:in `_app_views_companies_show_html_erb___2181409301437932968_70276005468360'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:06:09 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (136.0ms)
+Completed 500 Internal Server Error in 145ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `event_requests_path' for #<#<Class:0x00007fd4d0af2a38>:0x00007fd4d50e2ed0>
+Did you mean?  events_path):
+    14:     <p>
+    15: 
+    16: <h2>Join the queue</h2>
+    17: <%= form_with(model: [ @event, @event.requests.build ], local: true) do |form| %>
+    18:   <p>
+    19:     <%= form.submit %>
+    20:   </p>
+  
+app/views/companies/show.html.erb:17:in `_app_views_companies_show_html_erb___2181409301437932968_70276042136480'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:08:45 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (153.8ms)
+Completed 500 Internal Server Error in 187ms (ActiveRecord: 3.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `event_requests_path' for #<#<Class:0x00007fd4d601d030>:0x00007fd4d6023390>
+Did you mean?  event_company_requests_path):
+    14:     <p>
+    15: 
+    16: <h2>Join the queue</h2>
+    17: <%= form_with(model: [ @event, @event.requests.build ], local: true) do |form| %>
+    18:   <p>
+    19:     <%= form.submit %>
+    20:   </p>
+  
+app/views/companies/show.html.erb:17:in `_app_views_companies_show_html_erb___2181409301437932968_70276050119620'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:09:24 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (152.9ms)
+Completed 500 Internal Server Error in 159ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `company_requests_path' for #<#<Class:0x00007fd4d601d030>:0x00007fd4d686c560>
+Did you mean?  compute_asset_path):
+    14:     <p>
+    15: 
+    16: <h2>Join the queue</h2>
+    17: <%= form_with(model: [ @company, @company.requests.build ], local: true) do |form| %>
+    18:   <p>
+    19:     <%= form.submit %>
+    20:   </p>
+  
+app/views/companies/show.html.erb:17:in `_app_views_companies_show_html_erb___2181409301437932968_70276054479660'
+Started GET "/siwintercareerfair" for ::1 at 2019-07-31 15:11:06 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 47ms (Views: 43.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:11:11 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (187.3ms)
+Completed 500 Internal Server Error in 196ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `company_id' for #<#<Class:0x00007fd4d601d030>:0x00007fd4d50eb170>
+Did you mean?  @company):
+    14:     <p>
+    15: 
+    16: <h2>Join the queue</h2>
+    17: <%= form_with(model: [ @company, @event.companies.find_by(params[company_id]).requests.build ], local: true) do |form| %>
+    18:   <p>
+    19:     <%= form.submit %>
+    20:   </p>
+  
+app/views/companies/show.html.erb:17:in `_app_views_companies_show_html_erb___2181409301437932968_70276042153660'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:11:38 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? LIMIT ?[0m  [["event_id", 7], ["LIMIT", 1]]
+  ↳ app/views/companies/show.html.erb:17
+  Rendered companies/show.html.erb within layouts/application (116.9ms)
+Completed 500 Internal Server Error in 128ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `company_requests_path' for #<#<Class:0x00007fd4d601d030>:0x00007fd4d1e5a210>
+Did you mean?  compute_asset_path):
+    14:     <p>
+    15: 
+    16: <h2>Join the queue</h2>
+    17: <%= form_with(model: [ @company, @event.companies.find_by(params[:company_id]).requests.build ], local: true) do |form| %>
+    18:   <p>
+    19:     <%= form.submit %>
+    20:   </p>
+  
+app/views/companies/show.html.erb:17:in `_app_views_companies_show_html_erb___2181409301437932968_70276015642640'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:14:30 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.5ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.4ms)
+
+
+  
+SyntaxError (/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:17: syntax error, unexpected tIVAR
+...el: [ @company, @event.@company.requests.build ], local: tru...
+...                       ^~~~~~~~
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:17: syntax error, unexpected ']', expecting end
+...event.@company.requests.build ], local: true) do |form| @out...
+...                              ^
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:27: syntax error, unexpected ensure, expecting end-of-input
+          ensure
+          ^~~~~~):
+  
+app/views/companies/show.html.erb:17: syntax error, unexpected tIVAR
+app/views/companies/show.html.erb:17: syntax error, unexpected ']', expecting end
+app/views/companies/show.html.erb:27: syntax error, unexpected ensure, expecting end-of-input
+Started GET "/siwintercareerfair" for ::1 at 2019-07-31 15:17:17 -0400
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  [1m[36mCACHE Event Load (0.0ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:35
+  Rendering events/show.html.erb within layouts/application
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."event_id" = ? ORDER BY "companies"."name" ASC[0m  [["event_id", 7]]
+  ↳ app/views/events/show.html.erb:9
+  Rendered events/show.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 52ms (Views: 48.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:17:21 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.7ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (2.1ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"requests", :event_id=>"siwintercareerfair", :id=>"amazon"}, missing required keys: [:company_id]):
+    14:     <p>
+    15: 
+    16: <h2>Join the queue</h2>
+    17: <%= form_with scope: :request, url: event_company_requests_path, local: true do |form| %>
+    18:   <p>
+    19:     <%= form.submit %>
+    20:   </p>
+  
+app/views/companies/show.html.erb:17:in `_app_views_companies_show_html_erb___2181409301437932968_70276043322160'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:23:29 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (2.7ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"create", :company_id=>nil, :controller=>"requests", :event_id=>"siwintercareerfair", :id=>"amazon", :user_id=>nil}):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     <p>
+    15: 
+    16:     <%= button_to '<', {:controller => 'requests', :action => 'create', :user_id => params[:user_id], :company_id => params[:company_id], :event_id => params[:event_id]}, {:method => :post} %>
+    17:      
+    18: 
+    19:     <p><%= link_to 'Back', event_path(@event) %></p>
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276031355860'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:28:42 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (48.6ms)
+Completed 500 Internal Server Error in 57ms (ActiveRecord: 8.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `user_id' for #<User:0x00007fd4d54a1e90>):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     <p>
+    15: 
+    16:     <%= button_to '<', {:controller => 'requests', :action => 'create', :user_id => current_user.user_id, :company_id => params[:id], :event_id => params[:event_id]}, {:method => :post} %>
+    17: 
+    18: 
+    19:     <p><%= link_to 'Back', event_path(@event) %></p>
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276050225220'
+Started GET "/siwintercareerfair/amazon" for ::1 at 2019-07-31 15:29:17 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 56ms (Views: 51.9ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 15:29:22 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"yb+UPHljQmEyyp2mHbC0MwNw4Z/ZriGLTTpBaGjSCZs1B/1Rzg0dhL5HifmDSiJPttXergb8e6RguG/GutzH3w==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:4
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:5
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: request):
+  
+app/controllers/requests_controller.rb:12:in `request_params'
+app/controllers/requests_controller.rb:6:in `create'
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 15:30:41 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"yb+UPHljQmEyyp2mHbC0MwNw4Z/ZriGLTTpBaGjSCZs1B/1Rzg0dhL5HifmDSiJPttXergb8e6RguG/GutzH3w==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:4
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:5
+Completed 400 Bad Request in 4ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: request):
+  
+app/controllers/requests_controller.rb:12:in `request_params'
+app/controllers/requests_controller.rb:6:in `create'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:39:22 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (13.2ms)
+Completed 500 Internal Server Error in 52ms (ActiveRecord: 0.6ms)
+
+
+  
+SyntaxError (/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:21: syntax error, unexpected '<', expecting ')'
+    <p>'.freeze;@output_buffer.app...
+    ^
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:21: syntax error, unexpected tCONSTANT, expecting ')'
+...t_buffer.append=( link_to 'Back', event_path(@event) );@outp...
+...                           ^~~~
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:22: unknown regexp options - ct
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:27: unterminated string meets end of file
+          end
+              ^
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:27: syntax error, unexpected end-of-input, expecting ')'):
+  
+app/views/companies/show.html.erb:21: syntax error, unexpected '<', expecting ')'
+app/views/companies/show.html.erb:21: syntax error, unexpected tCONSTANT, expecting ')'
+app/views/companies/show.html.erb:22: unknown regexp options - ct
+app/views/companies/show.html.erb:27: unterminated string meets end of file
+app/views/companies/show.html.erb:27: syntax error, unexpected end-of-input, expecting ')'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:40:06 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.4ms)
+
+
+  
+SyntaxError (/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:21: syntax error, unexpected '<', expecting ')'
+    <p>'.freeze;@output_buffer.app...
+    ^
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:21: syntax error, unexpected tCONSTANT, expecting ')'
+...t_buffer.append=( link_to 'Back', event_path(@event) );@outp...
+...                           ^~~~
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:22: unknown regexp options - ct
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:27: unterminated string meets end of file
+          end
+              ^
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:27: syntax error, unexpected end-of-input, expecting ')'):
+  
+app/views/companies/show.html.erb:21: syntax error, unexpected '<', expecting ')'
+app/views/companies/show.html.erb:21: syntax error, unexpected tCONSTANT, expecting ')'
+app/views/companies/show.html.erb:22: unknown regexp options - ct
+app/views/companies/show.html.erb:27: unterminated string meets end of file
+app/views/companies/show.html.erb:27: syntax error, unexpected end-of-input, expecting ')'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:43:05 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 61ms (Views: 54.4ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/siwintercareerfair" for ::1 at 2019-07-31 15:43:09 -0400
+  
+AbstractController::ActionNotFound (The action 'update' could not be found for EventsController):
+  
+actionpack (5.2.3) lib/abstract_controller/base.rb:129:in `process'
+actionview (5.2.3) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.3) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (5.2.3) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started PATCH "/siwintercareerfair" for ::1 at 2019-07-31 15:43:20 -0400
+  
+AbstractController::ActionNotFound (The action 'update' could not be found for EventsController):
+  
+actionpack (5.2.3) lib/abstract_controller/base.rb:129:in `process'
+actionview (5.2.3) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.3) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (5.2.3) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started PATCH "/siwintercareerfair" for ::1 at 2019-07-31 15:43:33 -0400
+  
+AbstractController::ActionNotFound (The action 'update' could not be found for EventsController):
+  
+actionpack (5.2.3) lib/abstract_controller/base.rb:129:in `process'
+actionview (5.2.3) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.3) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (5.2.3) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:44:06 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 56ms (Views: 25.0ms | ActiveRecord: 1.7ms)
+
+
+Started PATCH "/siwintercareerfair" for ::1 at 2019-07-31 15:44:09 -0400
+  
+AbstractController::ActionNotFound (The action 'update' could not be found for EventsController):
+  
+actionpack (5.2.3) lib/abstract_controller/base.rb:129:in `process'
+actionview (5.2.3) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.3) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.3) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.3) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.3) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (5.2.3) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:45:17 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.7ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     </p>
+    15: 
+    16:     <%= form_for @request, url: {action: "create"} do |form| %>
+    17:       <%= form.submit "Join queue" %>
+    18:     <% end %>
+    19: 
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276015908940'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:46:59 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (2.8ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     </p>
+    15: 
+    16:     <%= form_for @request, url: {action: "create"} do |form| %>
+    17:       <%= form.text_area :name %>
+    18:       <%= form.submit "Join queue" %>
+    19:     <% end %>
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276013258180'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:48:40 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 91ms (Views: 63.4ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/siwintercareerfair" for ::1 at 2019-07-31 15:48:42 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"y/blJJ394nog2c1P9feCuHLGt3PxqHsUDsv5FFqMsPM3ToxJKpO9n6xU2RBrDRTEx2OIQi76ITsjSde6iIJ+tw==", "commit"=>"Join queue", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: company):
+  
+app/controllers/companies_controller.rb:42:in `company_params'
+app/controllers/companies_controller.rb:20:in `create'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:51:17 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 35ms (Views: 28.1ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/siwintercareerfair" for ::1 at 2019-07-31 15:51:18 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"17H6fR9rbxHlcph5sD9/c4UPtbmvjUWHhl2OLRGsAKgrCZMQqAUw9Gn/jCYuxekPMKqKiHDfH6ir36CDw6LO7A==", "commit"=>"Join queue", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: company):
+  
+app/controllers/companies_controller.rb:42:in `company_params'
+app/controllers/companies_controller.rb:20:in `create'
+Started POST "/siwintercareerfair" for ::1 at 2019-07-31 15:52:15 -0400
+Processing by CompaniesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"17H6fR9rbxHlcph5sD9/c4UPtbmvjUWHhl2OLRGsAKgrCZMQqAUw9Gn/jCYuxekPMKqKiHDfH6ir36CDw6LO7A==", "commit"=>"Join queue", "event_id"=>"siwintercareerfair"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: company):
+  
+app/controllers/companies_controller.rb:42:in `company_params'
+app/controllers/companies_controller.rb:20:in `create'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:52:20 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"create", :controller=>"requests", :event_id=>"siwintercareerfair", :id=>"amazon"}):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     </p>
+    15: 
+    16:     <%= form_for Request.new, url: {controller: "requests", action: "create"} do |form| %>
+    17:       <%= form.submit "Join queue" %>
+    18:     <% end %>
+    19: 
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276015303720'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:53:15 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (2.3ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"requests", :event_id=>"siwintercareerfair", :id=>"amazon"}, missing required keys: [:company_id]):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     </p>
+    15: 
+    16:     <%= form_for Request.new, url: event_company_requests_path do |form| %>
+    17:       <%= form.submit "Join queue" %>
+    18:     <% end %>
+    19: 
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276044770240'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:54:03 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.6ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"requests", :event_id=>"siwintercareerfair", :id=>"amazon"}, missing required keys: [:company_id]):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     </p>
+    15: 
+    16:     <%= form_for @request, url: event_company_requests_path do |form| %>
+    17:       <%= form.submit "Join queue" %>
+    18:     <% end %>
+    19: 
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276033076200'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:54:50 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (2.2ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"requests", :event_id=>"siwintercareerfair", :id=>"amazon"}, missing required keys: [:company_id]):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     </p>
+    15: 
+    16:     <%= form_for Request.new, url: event_company_requests_path do |form| %>
+    17:       <%= form.submit "Join queue" %>
+    18:     <% end %>
+    19: 
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276013188300'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:55:02 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.5ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"requests", :event_id=>"siwintercareerfair", :id=>"amazon"}, missing required keys: [:company_id]):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     </p>
+    15: 
+    16:     <%= form_for Request.new, url: event_company_requests_path do |form| %>
+    17:       <%= form.submit "Join queue" %>
+    18:     <% end %>
+    19: 
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276043623300'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:55:04 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (2.8ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"requests", :event_id=>"siwintercareerfair", :id=>"amazon"}, missing required keys: [:company_id]):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     </p>
+    15: 
+    16:     <%= form_for Request.new, url: event_company_requests_path do |form| %>
+    17:       <%= form.submit "Join queue" %>
+    18:     <% end %>
+    19: 
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276032464160'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:58:01 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  Rendered companies/show.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.4ms)
+
+
+  
+SyntaxError (/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:20: syntax error, unexpected '<', expecting end
+    <p>'.freeze;@output_buffer.app...
+    ^
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:20: syntax error, unexpected tCONSTANT, expecting end
+...t_buffer.append=( link_to 'Back', event_path(@event) );@outp...
+...                           ^~~~
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:21: unknown regexp options - ct
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:26: unterminated string meets end of file
+          end
+              ^
+/Users/charlierose/Documents/Career Fair Queue/its-career-fair-queue/app/views/companies/show.html.erb:26: syntax error, unexpected end-of-input, expecting end):
+  
+app/views/companies/show.html.erb:20: syntax error, unexpected '<', expecting end
+app/views/companies/show.html.erb:20: syntax error, unexpected tCONSTANT, expecting end
+app/views/companies/show.html.erb:21: unknown regexp options - ct
+app/views/companies/show.html.erb:26: unterminated string meets end of file
+app/views/companies/show.html.erb:26: syntax error, unexpected end-of-input, expecting end
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 15:58:53 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (25.1ms)
+Completed 200 OK in 72ms (Views: 63.2ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 15:58:56 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"cfpTdRt/pOP14wpyqfkoxIYgetRS/4Vd3kO2+D38jDyNQjoYrBH7BnluHi03A764M4VF5Y2t33LzwZhW7/JCeA==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:4
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:5
+Completed 400 Bad Request in 4ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: request):
+  
+app/controllers/requests_controller.rb:15:in `request_params'
+app/controllers/requests_controller.rb:6:in `create'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:01:14 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.4ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 33ms (Views: 24.5ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 16:01:16 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"IZ+Cj/d2e4mxiPQO1HIZTqglKdG3jUQaCgNmo+MdLNDdJ+viQBgkbD0F4FFKiI8yHYAW4GjfHjUngUgNMRPilA==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:4
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:5
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: request):
+  
+app/controllers/requests_controller.rb:15:in `request_params'
+app/controllers/requests_controller.rb:6:in `create'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:02:07 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (43.5ms)
+Completed 200 OK in 99ms (Views: 67.7ms | ActiveRecord: 3.1ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 16:02:09 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"JC9sMkXAhOoUWXu3PFXPEJSsALGRg9fH8Zo4mTsLjOXYlwVf8q7bD5jUb+iir1lsIQk/gE7RjejcGBY36QVCoQ==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:4
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:5
+Unpermitted parameters: :authenticity_token, :event_id, :company_id
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:6
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:6
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:6
+No template found for RequestsController#create, rendering head :no_content
+Completed 204 No Content in 57ms (ActiveRecord: 0.9ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 16:02:11 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"JC9sMkXAhOoUWXu3PFXPEJSsALGRg9fH8Zo4mTsLjOXYlwVf8q7bD5jUb+iir1lsIQk/gE7RjejcGBY36QVCoQ==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:4
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:5
+Unpermitted parameters: :authenticity_token, :event_id, :company_id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:6
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:6
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:6
+No template found for RequestsController#create, rendering head :no_content
+Completed 204 No Content in 38ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:06:50 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 100ms (Views: 65.8ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 16:06:52 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"vxFOFdfjE5ZCbQgwH2BM9fxKBs+w0cl0uq5HOcz8k8FDqSd4YI1Mc87gHG+BmtqJSe85/m+Dk1uXLGmXHvJdhQ==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:4
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:5
+Completed 400 Bad Request in 5ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: request):
+  
+app/controllers/requests_controller.rb:15:in `request_params'
+app/controllers/requests_controller.rb:6:in `create'
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 16:08:20 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"vxFOFdfjE5ZCbQgwH2BM9fxKBs+w0cl0uq5HOcz8k8FDqSd4YI1Mc87gHG+BmtqJSe85/m+Dk1uXLGmXHvJdhQ==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:4
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:5
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: request):
+  
+app/controllers/requests_controller.rb:15:in `request_params'
+app/controllers/requests_controller.rb:6:in `create'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:08:26 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.3ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (9.2ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `request_id' for #<Request:0x00007fd4d3fa9060>
+Did you mean?  require_or_load):
+    13:         <input type="checkbox" disabled="true" <% if @company.iSponsor %>checked<% end %>>
+    14:     </p>
+    15: 
+    16:     <%= button_to '<', {:controller => 'requests', :action => 'create', :user_id => current_user.id, :company_id => params[:id], :event_id => params[:event_id], :request => Request.new.request_id}, {:method => :post} %>
+    17: 
+    18:     <p><%= link_to 'Back', event_path(@event) %></p>
+    19: </section>
+  
+app/views/companies/show.html.erb:16:in `_app_views_companies_show_html_erb___2181409301437932968_70276005269440'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:09:06 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 45ms (Views: 39.6ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 16:09:08 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"ted2zgQ6X8K4YdeOY6SKMmvMcVkLcjUwdGkDRMo81NhJXx+js1QAJzTsw9H9XhxO3mlOaNQgbx9Z6y3qGDIanA==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:4
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:5
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: request):
+  
+app/controllers/requests_controller.rb:15:in `request_params'
+app/controllers/requests_controller.rb:6:in `create'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:12:19 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 81ms (Views: 54.0ms | ActiveRecord: 2.9ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 16:12:20 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"REhgtmdWUFqTEy0rFO0FLj0eq9LE5b+6CWBOUl29k6648Anb0DgPvx+eOXSKF5NSiLuU4xu35ZUk4mD8j7Nd6g==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:7
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:8
+Completed 400 Bad Request in 5ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: request):
+  
+app/controllers/requests_controller.rb:16:in `request_params'
+app/controllers/requests_controller.rb:9:in `create'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:13:32 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.4ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (26.7ms)
+Completed 200 OK in 122ms (Views: 83.2ms | ActiveRecord: 4.2ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?user_id=1" for ::1 at 2019-07-31 16:13:34 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"U0kaEILzvdcE3x/gNoBOIOEGeoOhoAZU6VXIQdeu2giv8XN9NZ3iMohSC7+oethcVKNFsn7yXHvE1+bvBaAUTA==", "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:7
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:8
+Completed 400 Bad Request in 4ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: request):
+  
+app/controllers/requests_controller.rb:16:in `request_params'
+app/controllers/requests_controller.rb:9:in `create'
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:20:42 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (21.8ms)
+Completed 200 OK in 93ms (Views: 59.4ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?request%5Bid%5D=&user_id=1" for ::1 at 2019-07-31 16:20:44 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"U3dEhTE3QApRUHfmsPNL5+BtmNCmC+JMp6QDb1TXENmvzy3ohlkf793dY7kuCd2bVcin4XlZuGOKJi3BhtnenQ==", "request"=>{"id"=>""}, "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:7
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:8
+Unpermitted parameter: :id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+No template found for RequestsController#create, rendering head :no_content
+Completed 204 No Content in 51ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:20:51 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 36ms (Views: 30.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:22:05 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (20.5ms)
+Completed 200 OK in 72ms (Views: 43.1ms | ActiveRecord: 2.9ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?request%5Bid%5D=&user_id=1" for ::1 at 2019-07-31 16:22:07 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"HcW8TGtpKN/ftd4UsM5oynlgfApRqWvRjqoeODYZjaPhfdUh3Ad3OlM4yksuNP62zMVDO477Mf6jKDCW5BdD5w==", "request"=>{"id"=>""}, "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:7
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:8
+Unpermitted parameter: :id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+No template found for RequestsController#create, rendering head :no_content
+Completed 204 No Content in 44ms (ActiveRecord: 0.8ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?request%5Bid%5D=&user_id=1" for ::1 at 2019-07-31 16:22:42 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"HcW8TGtpKN/ftd4UsM5oynlgfApRqWvRjqoeODYZjaPhfdUh3Ad3OlM4yksuNP62zMVDO477Mf6jKDCW5BdD5w==", "request"=>{"id"=>""}, "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:7
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:8
+Unpermitted parameter: :id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+No template found for RequestsController#create, rendering head :no_content
+Completed 204 No Content in 42ms (ActiveRecord: 0.7ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?request%5Bid%5D=&user_id=1" for ::1 at 2019-07-31 16:23:26 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"HcW8TGtpKN/ftd4UsM5oynlgfApRqWvRjqoeODYZjaPhfdUh3Ad3OlM4yksuNP62zMVDO477Mf6jKDCW5BdD5w==", "request"=>{"id"=>""}, "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:7
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:8
+Unpermitted parameter: :id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+No template found for RequestsController#create, rendering head :no_content
+Completed 204 No Content in 44ms (ActiveRecord: 0.6ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?request%5Bid%5D=&user_id=1" for ::1 at 2019-07-31 16:23:27 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"HcW8TGtpKN/ftd4UsM5oynlgfApRqWvRjqoeODYZjaPhfdUh3Ad3OlM4yksuNP62zMVDO477Mf6jKDCW5BdD5w==", "request"=>{"id"=>""}, "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:7
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:8
+Unpermitted parameter: :id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+No template found for RequestsController#create, rendering head :no_content
+Completed 204 No Content in 42ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/siwintercareerfair/amazon/" for ::1 at 2019-07-31 16:23:47 -0400
+Processing by CompaniesController#show as HTML
+  Parameters: {"event_id"=>"siwintercareerfair", "id"=>"amazon"}
+  [1m[36mEvent Load (0.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:34
+  [1m[36mCompany Load (0.2ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  [1m[36mCACHE Company Load (0.0ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/companies_controller.rb:38
+  Rendering companies/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendered companies/show.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 38ms (Views: 31.5ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/siwintercareerfair/amazon/requests?request%5Brequest_id%5D=&user_id=1" for ::1 at 2019-07-31 16:23:49 -0400
+Processing by RequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"e5hGNbwo3AduPsXHkD0mn7KxDHOw1iV5Pfj7Jo3u11qHIC9YC0aD4uKz0ZgOx7DjBxQzQm+Ef1YQetWIX+AZHg==", "request"=>{"request_id"=>""}, "user_id"=>"1", "event_id"=>"siwintercareerfair", "company_id"=>"amazon"}
+  [1m[36mEvent Load (0.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."slug" = ? LIMIT ?[0m  [["slug", "siwintercareerfair"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:7
+  [1m[36mCompany Load (0.1ms)[0m  [1m[34mSELECT  "companies".* FROM "companies" WHERE "companies"."event_id" = ? AND "companies"."slug" = ? LIMIT ?[0m  [["event_id", 7], ["slug", "amazon"], ["LIMIT", 1]]
+  ↳ app/controllers/requests_controller.rb:8
+Unpermitted parameter: :request_id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/requests_controller.rb:10
+No template found for RequestsController#create, rendering head :no_content
+Completed 204 No Content in 39ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2019-08-02 09:50:18 -0400
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/charlierose/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by EventsController#index as HTML
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT "events".* FROM "events" ORDER BY "events"."name" ASC[0m
+  ↳ app/views/events/index.html.erb:16
+  Rendered events/index.html.erb within layouts/application (36.8ms)
+Completed 200 OK in 549ms (Views: 492.9ms | ActiveRecord: 3.3ms)
+
+

@@ -1,0 +1,31 @@
+<section class="ui center main">
+  <h1>Add New Company</h1>
+  <%= form_with(model: [ @event, @event.companies.build ], local: true) do |form| %>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+
+    <p>
+      <%= form.label :link %><br>
+      <%= form.text_field :link %>
+    </p>
+
+    <p>
+      <%= form.label :summary %><br>
+      <%= form.text_area :summary %>
+    </p>
+
+    <p>
+      <%= form.label :International_Sponsor %>
+      <%= form.check_box :iSponsor %>
+    </p>
+
+    <p>
+      <%= form.label :Slug %><br>
+      <%= form.text_field :slug %>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+</section>

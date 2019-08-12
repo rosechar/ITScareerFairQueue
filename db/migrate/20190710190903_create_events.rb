@@ -1,0 +1,13 @@
+class CreateEvents < ActiveRecord::Migration[5.2]
+  def change
+    create_table :events do |t|
+      t.string :name
+      t.string :location
+      t.string :link
+      t.text :description
+      t.string :slug
+
+      t.timestamps
+    end
+  end
+end

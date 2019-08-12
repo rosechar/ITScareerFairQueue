@@ -1,0 +1,33 @@
+<section class="ui center main">
+    <h1><%= @company.name %></h1>
+    <% unless current_user.recruiter %>
+        <p>
+            <label>Website: </label>
+            <a href="<%= @company.link %>" target="_blank"><%= @company.link %></a>
+        </p>
+        <p>
+            <label>Description: </label>
+            <%= @company.summary %>
+        </p>
+        <p>
+            <label>Sponsors International Applicants: </label>
+            <% if @company.iSponsor %>
+                Yes
+            <% else %>
+                No
+            <% end %>
+        </p>
+
+        <%= button_to 'Join Queue', {:controller => 'requests', :action => 'create', :event_id => @event.id, :company_id => @company.id, :user_id => current_user.id, :id => nil}, {:method => :post} %>
+    <% else %>
+        <h2>Applicant Queue</h2>
+        <div class="ui list">
+            <% @requests.each do |request| %>
+                <div class="ui item"><%= request.user.first_name %> <%= request.user.last_name%>
+                    <%= button_to "Remove", [@event, @company, request], method: :delete, data: { confirm: 'Remove applicant from queue?' }%></div>
+            <% end %>
+        </div>
+    <% end %>
+
+    <p><%= link_to 'Back', event_path(@event) %></p>
+</section>
